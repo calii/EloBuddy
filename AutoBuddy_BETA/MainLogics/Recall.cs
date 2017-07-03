@@ -24,7 +24,7 @@ namespace AutoBuddy.MainLogics
         public Recall(LogicSelector currentLogic, Menu parMenu)
         {
             Menu menu = parMenu.AddSubMenu("Recall settings", "ergtrh");
-            flatGold=new Slider("Minimum base gold to recall", 560, 0, 4000);
+            flatGold=new Slider("Minimum base gold to recall", 400, 100, 1000);
             goldPerLevel = new Slider("Minmum gold per level to recall", 70, 0, 300);
             menu.Add("mingold", flatGold);
             menu.Add("goldper", goldPerLevel);
@@ -32,9 +32,9 @@ namespace AutoBuddy.MainLogics
             menu.AddLabel(
     @"
 Example: Your champ has lvl 10
-Base gold = 560
+Base gold = 0
 Gold per level = 70
-Minimum gold = 560+70*10 = 1260
+Minimum gold = 300+70*10 = 350
 
 AutoBuddy won't recall if you have less gold than needed for next item.
 
@@ -46,7 +46,7 @@ AutoBuddy won't recall if you have less gold than needed for next item.
             {
                 spawn = so;
             }
-            Core.DelayAction(ShouldRecall, 3000);
+            Core.DelayAction(ShouldRecall, 1000);
             if (MainMenu.GetMenu("AB").Get<CheckBox>("debuginfo").CurrentValue)
                 Drawing.OnDraw += Drawing_OnDraw;
         }
